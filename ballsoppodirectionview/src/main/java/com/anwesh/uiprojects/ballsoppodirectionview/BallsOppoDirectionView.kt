@@ -215,4 +215,13 @@ class BallsOppoDirectionView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallsOppoDirectionView {
+            val view : BallsOppoDirectionView = BallsOppoDirectionView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
