@@ -193,4 +193,26 @@ class BallsOppoDirectionView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallsOppoDirectionView) {
+
+        private val bod : BallsOppoDirection= BallsOppoDirection(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bod.draw(canvas, paint)
+            animator.animate {
+                bod.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bod.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
